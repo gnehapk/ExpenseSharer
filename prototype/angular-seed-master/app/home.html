@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+  <link rel="stylesheet" href="css/app.css"/>
+  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>-->
+</head>
+<body>
+
+  <h1 class="title">EXPENSE SHARER MANAGER</h1>
+
+  <form class="clearBoth" ng-controller="expenseForm" ng-submit="submitExpense(expenseInfo)">
+        <div class="expenseDesc" ng-model="expenseInfo">
+            <div class="leftDesc">
+                <div class="item">
+                    <label for="title">Expense Title</label>
+                    <input type="text" id="exTitle" name="title" ng-model="expenseInfo.exTitle"/>
+                </div>
+                <div class="item">
+                    <label for="amount">Total Amount Spend</label>
+                    <input type="text" id="totAmt" name="amount" ng-model="expenseInfo.amount"/>
+                </div>
+                <div class="item">
+                    <label for="shareType">Type of Share</label>
+                    <select name="shareType" ng-model="expenseInfo.typeOfShare">
+                        <option value="equal">Equal</option>
+                        <option value="unequal">Unequal</option>
+                    </select>
+                </div>
+            </div>
+            <div class="rightDesc">
+                <div class="item">
+                    <label for="date">Date</label>
+                    <input type="text" id="date" name="date" ng-model="expenseInfo.date"/>
+                </div>
+            </div>
+            <!-- <div class="lowerSection">
+                <div class="expenseTable clearBoth">
+                    <div class="tblHeader row">
+                        <div class="sNo">SNo.</div>
+                        <div class="email">Email</div>
+                        <div class="name">Name</div>
+                        <div class="share">Share</div>
+                        <div class="paid">Paid</div>
+                        <div class="owesTo">Owes To</div>
+                        <div class="getsFrom">Gets From</div>
+                        <div></div>
+                    </div>
+                    <div class="tblBody">
+                        <div class="row">
+                            <div class="sNo">1</div>
+                            <div class="email">gnehapk@gmail.com</div>
+                            <div class="name">Neha</div>
+                            <div class="share">700</div>
+                            <div class="paid">500</div>
+                            <div class="owesTo">200 to Sneha</div>
+                            <div class="getsFrom"></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="tblFooter clearBoth">
+                        <button id="addMember">Add Member</button>
+                    </div>
+                </div>
+            </div> -->
+
+        </div> <!--end of expenseDesc-->
+        <input type="submit" value="AddExpense" class="clearBoth" />
+    </form>
+
+
+  <div ng-view></div>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+</body>
+</html>
