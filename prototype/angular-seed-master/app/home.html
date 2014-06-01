@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
   <link rel="stylesheet" href="css/app.css"/>
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>-->
+  <link rel="stylesheet" type="text/css" href="../bootstrap-3.1.1/dist/css/bootstrap.css">
 </head>
 <body>
 
@@ -43,45 +44,59 @@
                     <input type="text" id="date" name="date" ng-model="expenseInfo.date"/>
                 </div>
             </div>
-            <!-- <div class="lowerSection">
-                <div class="expenseTable clearBoth">
-                    <div class="tblHeader row">
-                        <div class="sNo">SNo.</div>
-                        <div class="email">Email</div>
-                        <div class="name">Name</div>
-                        <div class="share">Share</div>
-                        <div class="paid">Paid</div>
-                        <div class="owesTo">Owes To</div>
-                        <div class="getsFrom">Gets From</div>
-                        <div></div>
-                    </div>
-                    <div class="tblBody">
-                        <div class="row">
-                            <div class="sNo">1</div>
-                            <div class="email">gnehapk@gmail.com</div>
-                            <div class="name">Neha</div>
-                            <div class="share">700</div>
-                            <div class="paid">500</div>
-                            <div class="owesTo">200 to Sneha</div>
-                            <div class="getsFrom"></div>
-                            <div></div>
-                        </div>
-                    </div>
-                    <div class="tblFooter clearBoth">
-                        <button id="addMember">Add Member</button>
-                    </div>
-                </div>
-            </div> -->
+            <div class="panel panel-default">
+              <div class="panel-heading">Expense Summary</div>
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>SNo.</th>
+                    <th>UserId</th>
+                    <th>Name</th>
+                    <th>Share</th>
+                    <th>Paid</th>
+                    <th>Owes To</th>
+                    <th>Gets From</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="member in members">
+                    <td>{{member.sNo}}</td>
+                    <td>{{member.id}}</td>
+                    <td>{{member.name}}</td>
+                    <td>{{member.share}}</td>
+                    <td>{{member.paid}}</td>
+                    <td>{{member.owesTo}}</td>
+                    <td>{{member.getsFrom}}</td>
+                    <td><input type="button" value="Delete" /></td>
+                  </tr>
+                  <tr ng-hide="!show">
+                    <td><span>{{counter}}</span></td>
+                    <td><input type="text" required ng-model="new.id"></td>
+                    <td><input type="text" required ng-model="new.name"></td>
+                    <td><input type="text" required ng-model="new.share"></td>
+                    <td><input type="text" required ng-model="new.paid"></td>
+                    <td><span>"to be added"</span></td>
+                    <td><span>"to be added"</span></td>
+                    <td><input type="button" value="Save" ng-click="addMember(new)" /></td>
+                </tr>
+
+                </tbody>
+              </table>
+
+              <div><input type="button" value="Add Member" ng-click="addRow()"/></div>
+            </div>
 
         </div> <!--end of expenseDesc-->
-        <input type="submit" value="AddExpense" class="clearBoth" />
+        <input type="submit" value="AddExpense" class="clearBoth"/>
     </form>
 
 
-  <div ng-view></div>
-
   <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+
   <script src="js/app.js"></script>
   <script src="js/services.js"></script>
   <script src="js/controllers.js"></script>

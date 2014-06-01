@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
   <link rel="stylesheet" href="css/app.css"/>
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>-->
+  <link rel="stylesheet" type="text/css" href="../bootstrap-3.1.1/dist/css/bootstrap.css">
 </head>
 <body>
 
@@ -20,7 +21,7 @@
     <div class="mainBdy" ng-controller="loginForm">
       <form ng-submit="login(userName, password)">
         <div class="userName">
-          <label for="usrNm">USERNAME</label>
+          <label for="usrNm">Username</label>
           <input type="text" id="usrNm" ng-model="userName"/>
         </div>
         <div class="password">
@@ -29,7 +30,7 @@
         </div>
         <div class="btnSection">
           <button>LOGIN</button>
-          <button>SIGN UP</button>
+          <button ng-click="register()">SIGN UP</button>
         </div>
       </form>
     </div>
@@ -37,6 +38,7 @@
   <div ng-view></div>
 
   <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="js/app.js"></script>
   <script src="js/services.js"></script>
