@@ -1,0 +1,22 @@
+.leftBody {
+	width: 45%;
+	border: 2px solid;
+	padding: 10px;
+	float: left;
+	margin-right: 20px;
+}
+
+.rightBody {
+	width: 45%;
+	border: 2px solid;
+	padding: 10px;
+	float: left;
+}
+
+.ng-invalid.ng-dirty{
+	border-color: #FA787E;
+}
+
+.ng-valid.ng-dirty{
+	border-color: #78FA89;
+}

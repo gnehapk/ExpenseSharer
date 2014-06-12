@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+  <link rel="stylesheet" href="css/app.css"/>
+  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>-->
+  <link rel="stylesheet" type="text/css" href="../bootstrap-3.1.1/dist/css/bootstrap.css">
+</head>
+<body class="container">
+  <div class="row">
+    <div class="col-md-15">
+      <h1 class="title">EXPENSE SHARER MANAGER</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-15">
+      <form ng-controller="expenseForm" role="form">
+        <div ng-model="expenseInfo">
+          <div class="row">
+            <div class="col-md-1">SNo.</div>
+            <div class="col-md-2">UserId</div>
+            <div class="col-md-1">Name</div>
+            <div class="col-md-1">Share</div>
+            <div class="col-md-1">Paid</div>
+            <div class="col-md-2">Owes To</div>
+            <div class="col-md-2">Gets From</div>
+          </div>
+          <div class="row" ng-repeat="member in members">
+            <div class="col-md-1">{{member.sNo}}</div>
+            <div class="col-md-2">{{member.id}}</div>
+            <div class="col-md-1">{{member.name}}</div>
+            <div class="col-md-1">{{member.share}}</div>
+            <div class="col-md-1">{{member.paid}}</div>
+            <div class="col-md-2">{{member.owesTo}}</div>
+            <div class="col-md-2">{{member.getsFrom}}</div>
+            <div class="col-md-1"><input type="button" value="Delete" class="btn" ng-click="deleteRow()" /></div>
+            <div class="col-md-1"><input type="button" value="Edit" class="btn" ng-click="editRow()" /></div>
+          </div>
+          <div class="row" ng-hide="!show">
+            <div class="col-md-1"><span>{{counter}}</span></div>
+            <div class="col-md-2"><input type="email" ng-model="new.id"></div>
+            <div class="col-md-1"><input type="text"  ng-model="new.name"></div>
+            <div class="col-md-1"><input type="text"  ng-model="new.share"></div>
+            <div class="col-md-1"><input type="number" ng-model="new.paid"></div>
+            <div class="col-md-2"><span>"to be added"</span></div>
+            <div class="col-md-2"><span>"to be added"</span></div>
+            <div class="col-md-1"><input type="button" value="Save" class="btn" ng-click="addMember()" /></div>
+            <div class="col-md-1"><input type="button" value="Cancel" class="btn" ng-click="Cancel()" /></div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <input type="button" class="btn btn-primary" value="Add Member" ng-click="addRow()"/>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+</body>
+</html>
