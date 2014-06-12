@@ -7,7 +7,6 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>My AngularJS App</title>
-  <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
@@ -15,83 +14,98 @@
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>-->
   <link rel="stylesheet" type="text/css" href="../bootstrap-3.1.1/dist/css/bootstrap.css">
 </head>
-<body>
+<body class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <h1 class="title">EXPENSE SHARER MANAGER</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10">
+      <form ng-controller="expenseForm" ng-submit="submitExpense(expenseInfo)" role="form">
+        <div ng-model="expenseInfo">
+          <div class="form-group row">
+              <label for="title" class="col-md-4 control-label">Expense Title</label>
+              <div class="col-md-6">
+                <input type="text" id="exTitle" name="title" class="form-control input-lg" required ng-model="expenseInfo.exTitle" placeholder="Enter Title"/>
+              </div>
+          </div>
+          <div class="form-group row">
+              <label for="amount" class="col-md-4 control-label">Total Amount Spend</label>
+              <div class="col-md-6">
+                <input type="number" id="totAmt" name="amount" class="form-control input-lg" required ng-model="expenseInfo.amount" placeholder="Enter Amount" min=1 max=5/>
+              </div>
+          </div>
+          <div class="form-group row">
+              <label for="shareType" class="col-md-4 control-label">Type of Share</label>
+              <div class="col-md-6">
+                <select name="shareType" required ng-model="expenseInfo.typeOfShare" class="form-control input-lg" ng-options="types for types in ['Equal', 'Unequal']">
+                    <option value="">Select Type of Share</option>
+                    <!-- <option value="equal">Equal</option>
+                    <option value="unequal">Unequal</option> -->
+                </select>
+              </div>
+          </div>
+          <div class="form-group row">
+              <label for="date" class="col-md-4 control-label">Date</label>
+              <div class="col-md-6">
+                <input type="date" id="date" name="date" class="form-control input-lg" required ng-model="expenseInfo.date" placeholder="Enter Date"/>
+              </div>
+          </div>
+         <!--  <div class="panel panel-default">
+            <div class="panel-heading">Expense Summary</div>
 
-  <h1 class="title">EXPENSE SHARER MANAGER</h1>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>SNo.</th>
+                  <th>UserId</th>
+                  <th>Name</th>
+                  <th>Share</th>
+                  <th>Paid</th>
+                  <th>Owes To</th>
+                  <th>Gets From</th>
 
-  <form class="clearBoth" ng-controller="expenseForm" ng-submit="submitExpense(expenseInfo)">
-        <div class="expenseDesc" ng-model="expenseInfo">
-            <div class="leftDesc">
-                <div class="item">
-                    <label for="title">Expense Title</label>
-                    <input type="text" id="exTitle" name="title" ng-model="expenseInfo.exTitle"/>
-                </div>
-                <div class="item">
-                    <label for="amount">Total Amount Spend</label>
-                    <input type="text" id="totAmt" name="amount" ng-model="expenseInfo.amount"/>
-                </div>
-                <div class="item">
-                    <label for="shareType">Type of Share</label>
-                    <select name="shareType" ng-model="expenseInfo.typeOfShare">
-                        <option value="equal">Equal</option>
-                        <option value="unequal">Unequal</option>
-                    </select>
-                </div>
-            </div>
-            <div class="rightDesc">
-                <div class="item">
-                    <label for="date">Date</label>
-                    <input type="text" id="date" name="date" ng-model="expenseInfo.date"/>
-                </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">Expense Summary</div>
-
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>SNo.</th>
-                    <th>UserId</th>
-                    <th>Name</th>
-                    <th>Share</th>
-                    <th>Paid</th>
-                    <th>Owes To</th>
-                    <th>Gets From</th>
-
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr ng-repeat="member in members">
-                    <td>{{member.sNo}}</td>
-                    <td>{{member.id}}</td>
-                    <td>{{member.name}}</td>
-                    <td>{{member.share}}</td>
-                    <td>{{member.paid}}</td>
-                    <td>{{member.owesTo}}</td>
-                    <td>{{member.getsFrom}}</td>
-                    <td><input type="button" value="Delete" /></td>
-                  </tr>
-                  <tr ng-hide="!show">
-                    <td><span>{{counter}}</span></td>
-                    <td><input type="text" required ng-model="new.id"></td>
-                    <td><input type="text" required ng-model="new.name"></td>
-                    <td><input type="text" required ng-model="new.share"></td>
-                    <td><input type="text" required ng-model="new.paid"></td>
-                    <td><span>"to be added"</span></td>
-                    <td><span>"to be added"</span></td>
-                    <td><input type="button" value="Save" ng-click="addMember(new)" /></td>
                 </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="member in members">
+                  <td>{{member.sNo}}</td>
+                  <td>{{member.id}}</td>
+                  <td>{{member.name}}</td>
+                  <td>{{member.share}}</td>
+                  <td>{{member.paid}}</td>
+                  <td>{{member.owesTo}}</td>
+                  <td>{{member.getsFrom}}</td>
+                  <td><input type="button" value="Delete" ng-click="deleteRow()" /></td>
+                  <td><input type="button" value="Edit" ng-click="editRow()" /></td>
+                </tr>
+                <tr ng-hide="!show">
+                  <td><span>{{counter}}</span></td>
+                  <td><input type="email" ng-model="new.id"></td>
+                  <td><input type="text"  ng-model="new.name"></td>
+                  <td><input type="text"  ng-model="new.share"></td>
+                  <td><input type="number" ng-model="new.paid"></td>
+                  <td><span>"to be added"</span></td>
+                  <td><span>"to be added"</span></td>
+                  <td><input type="button" value="Save" ng-click="addMember(new)" /></td>
+                  <td><input type="button" value="Cancel" ng-click="Cancel()" /></td>
+              </tr>
 
-                </tbody>
-              </table>
+              </tbody>
+            </table>
 
-              <div><input type="button" value="Add Member" ng-click="addRow()"/></div>
-            </div>
+            <div><input type="button" class="btn" value="Add Member" ng-click="addRow()"/></div>
+          </div> -->
 
-        </div> <!--end of expenseDesc-->
-        <input type="submit" value="AddExpense" class="clearBoth"/>
-    </form>
-
+        <div class="row">
+          <div class="col-md-10">
+            <input type="submit" value="Add Expense" class="btn btn-primary"/>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -102,5 +116,6 @@
   <script src="js/controllers.js"></script>
   <script src="js/filters.js"></script>
   <script src="js/directives.js"></script>
+  <script type="text/javascript" src="js/expense.js"></script>
 </body>
 </html>

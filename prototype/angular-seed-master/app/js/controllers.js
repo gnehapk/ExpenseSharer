@@ -4,13 +4,25 @@
 
 var expmodule = angular.module('myApp.controllers', []);
 
-expmodule.controller('loginForm', function($scope, sharedProperties) {
+expmodule.controller('TabController', function () {
+  this.tab = 1;
+
+    this.isSet = function(checkTab) {
+      return this.tab === checkTab;
+    };
+
+    this.setTab = function(setTab) {
+      this.tab = setTab;
+    };
+});
+
+expmodule.controller('loginForm',function($scope, $http, sharedProperties) {
     var auth;
   	$scope.login = function (userid, password) {
       auth = sharedProperties.session.isAuthenticated(userid, password);
       if (auth) {
         alert("Welcome "+userid);
-        window.location = "home.html";
+        window.location = "expenseList.html";
       } else {
         alert("Invalid Login");
       }
@@ -20,43 +32,22 @@ expmodule.controller('loginForm', function($scope, sharedProperties) {
     }
   });
 
-expmodule.controller('expenseForm', function($scope, sharedProperties) {
-  var id, expenses = {};
-  $scope.show = false;
-  $scope.members = [{
-    sNo: "1",
-    id: "gnehapk@gmail.com",
-    name: "Neha",
-    share: 200,
-    paid: 400,
-    owesTo: "200 to Sneha",
-    getsFrom: "400 from Nikita"
+expmodule.controller('listExpense', function ($scope, sharedProperties) {
+  $scope.expenses = sharedProperties.getExpenseList();/*[{
+    sNo: 1,
+    title: "Hotel Bill"
   }, {
-    sNo: "2",
-    id: "gnehapk@gmail.com",
-    name: "Neha",
-    share: 200,
-    paid: 400,
-    owesTo: "200 to Sneha",
-    getsFrom: "400 from Nikita"
-  }];
-  $scope.counter = $scope.members.length + 1;
-  $scope.submitExpense = function (expenseInfo) {
-    id = sharedProperties.session.getInfo();
-    $scope.members = expenseInfo.members = [];
-    if (!expenses[id]) {
-        expenses[id] = [];
-    }
-    expenses[id].push(expenseInfo);
-    alert('Expense Added Successfully');
+    sNo: 2,
+    title: "Shopping Expense"
+  }];*/
+  $scope.goToExpense = function () {
+    window.location = "home.html";
+
   }
-  $scope.addRow = function () {
-    $scope.show = true;
-    return $scope.newRow = true;
-  }
-  $scope.addMember = function (newMember) {
 
 });
+
+
 
 expmodule.controller('registrationForm', function($scope, sharedProperties) {
   var success;
@@ -65,12 +56,12 @@ expmodule.controller('registrationForm', function($scope, sharedProperties) {
       alert("The Confirm Password field does not match the Password field.");
     } else {
       success = sharedProperties.addUser(user);
-      if (success) {
+      //if (success) {
         alert("Successfully Registered.");
         window.location = "home.html";
-      } else {
+      /*} else {
         alert("User already exist with this email.");
-      }
+      }*/
     }
   }
 
